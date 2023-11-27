@@ -84,6 +84,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Resources\points.json" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
