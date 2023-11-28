@@ -1,12 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Controls;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.DB.Electrical;
+using MVVMProject.Creators.Interfaces;
 using Point = MVVMProject.Models.Point;
 
-namespace MVVMProject.Creators
+namespace MVVMProject.Creators.Implementation
 {
-    public class ConduitCreator
+    public class ConduitCreator : ICreator
     {
         private readonly Document _document;
 

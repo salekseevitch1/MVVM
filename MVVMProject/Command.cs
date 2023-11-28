@@ -1,30 +1,35 @@
 ﻿using Autodesk.Revit.Attributes;
 using Autodesk.Revit.DB;
-using Autodesk.Revit.UI;
-using MVVMProject.Creators;
+using DryIoc;
+using MVVMProject.Core;
+using MVVMProject.Creators.Implementation;
+using MVVMProject.Creators.Interfaces;
+using MVVMProject.Readers.Implementation;
+using MVVMProject.Readers.Interfaces;
 using MVVMProject.View;
 using MVVMProject.ViewModel;
 
 namespace MVVMProject
 {
     [Transaction(TransactionMode.Manual)]
-    public class Command : IExternalCommand
+    public class Command : BaseCommand
     {
-        public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
+        public override void RegisterCustomTypes()
         {
-            var document = commandData.Application.ActiveUIDocument.Document;
+            Container.Register<IPointReader, JsonReader>();
+            Container.Register<ICreator, LineCreator>();
 
-            var reader = new JsonReader();
-            var creator = new ConduitCreator(document);
+            Container.Register<ShellViewModel>();
+        }
+
+        public override void Run()
+        {
+            var shellViewModel = Container.Resolve<ShellViewModel>();
 
             var shell = new Shell();
-            var shellViewModel = new ShellViewModel(document, reader, creator);
-
             shell.DataContext = shellViewModel;
 
             shell.ShowDialog();
-
-            return Result.Succeeded;
         }
     }
 }

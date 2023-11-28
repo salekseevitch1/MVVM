@@ -1,11 +1,12 @@
-﻿using Autodesk.Revit.DB;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
+using Autodesk.Revit.DB;
+using MVVMProject.Readers.Interfaces;
 using Newtonsoft.Json;
 
-namespace MVVMProject
+namespace MVVMProject.Readers.Implementation
 {
-    public class JsonReader
+    public class JsonReader : IPointReader
     {
         public JsonReader()
         {
@@ -33,3 +34,4 @@ namespace MVVMProject
         }
     }
 }
+

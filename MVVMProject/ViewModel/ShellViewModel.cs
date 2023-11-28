@@ -1,21 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
+﻿using Autodesk.Revit.DB;
+using MVVMProject.Creators.Interfaces;
+using MVVMProject.Readers.Interfaces;
 using Prism.Commands;
 using Prism.Mvvm;
-using System.Windows;
-using Autodesk.Revit.DB;
-using MVVMProject.Creators;
-using Point = Autodesk.Revit.DB.Point;
+using System;
+using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace MVVMProject.ViewModel
 {
     public class ShellViewModel : BindableBase
     {
         private readonly Document _document;
-        private readonly JsonReader _reader;
-        private readonly ConduitCreator _creator;
+        private readonly IPointReader _reader;
+        private readonly ICreator _creator;
         private string _elevation;
 
         public string Elevation
@@ -31,15 +29,16 @@ namespace MVVMProject.ViewModel
 
         public ShellViewModel(
             Document document,
-            JsonReader reader, 
-            ConduitCreator creator)
+            IPointReader reader, 
+            ICreator creator)
         {
             _document = document;
+
             _reader = reader;
             _creator = creator;
 
             Points = new ObservableCollection<Models.Point>(
-                _reader.Read(@"C:\Users\salek\OneDrive\Рабочий стол\points.json"));
+                _reader.Read(@"D:\Repos\MVVM\MVVMProject\Resources\points.json"));
             
             CreateCommand = new DelegateCommand(CreateConduit);
         }
