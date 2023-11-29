@@ -59,6 +59,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
     </Reference>
@@ -77,16 +78,28 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\ActionHandler.cs" />
     <Compile Include="Core\BaseCommand.cs" />
     <Compile Include="Command.cs" />
+    <Compile Include="Core\EventHandler.cs" />
     <Compile Include="Creators\Implementation\ConduitCreator.cs" />
     <Compile Include="Creators\Implementation\LineCreator.cs" />
     <Compile Include="Creators\Interfaces\ICreator.cs" />
+    <Compile Include="ExtensionCommand.cs" />
+    <Compile Include="Extensions\DocumentExtensions.cs" />
+    <Compile Include="Extensions\Filter.cs" />
+    <Compile Include="Extensions\UiDocumentSelection.cs" />
     <Compile Include="Models\Point.cs" />
     <Compile Include="Readers\Implementation\XMLReader.cs" />
     <Compile Include="Readers\Interfaces\IPointReader.cs" />
     <Compile Include="Readers\Implementation\JsonReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Managers\PathManager.cs" />
+    <Compile Include="Resources\Icons.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Icons.resx</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\ShellViewModel.cs" />
     <Compile Include="View\Shell.xaml.cs">
       <DependentUpon>Shell.xaml</DependentUpon>
@@ -94,14 +107,31 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="Resources\points.json" />
+    <Resource Include="Resources\points.json" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Icons.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Icons.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <Page Include="View\Shell.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\work-29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\work-30.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\work-31.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\work-32.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

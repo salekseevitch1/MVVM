@@ -4,6 +4,7 @@ using DryIoc;
 using MVVMProject.Core;
 using MVVMProject.Creators.Implementation;
 using MVVMProject.Creators.Interfaces;
+using MVVMProject.Managers;
 using MVVMProject.Readers.Implementation;
 using MVVMProject.Readers.Interfaces;
 using MVVMProject.View;
@@ -19,6 +20,11 @@ namespace MVVMProject
             Container.Register<IPointReader, JsonReader>();
             Container.Register<ICreator, LineCreator>();
 
+            Container.Register<PathManager>();
+
+            Container.Register<ActionHandler>();
+            Container.Register<MyEventHandler>();
+
             Container.Register<ShellViewModel>();
         }
 
@@ -29,7 +35,7 @@ namespace MVVMProject
             var shell = new Shell();
             shell.DataContext = shellViewModel;
 
-            shell.ShowDialog();
+            shell.Show();
         }
     }
 }

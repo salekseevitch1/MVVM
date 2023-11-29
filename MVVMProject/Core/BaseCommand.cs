@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using Autodesk.Revit.DB;
+using Autodesk.Revit.Exceptions;
 using Autodesk.Revit.UI;
 using DryIoc;
 
@@ -10,8 +11,12 @@ namespace MVVMProject.Core
     {
         public Container Container;
 
+        public Document Document { get; set; }
+
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
+            Document = commandData.Application.ActiveUIDocument.Document;
+
             Container = new Container();
 
             Container.RegisterInstance(commandData.Application);
