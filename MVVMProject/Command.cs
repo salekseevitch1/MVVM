@@ -22,9 +22,6 @@ namespace MVVMProject
 
             Container.Register<PathManager>();
 
-            Container.Register<ActionHandler>();
-            Container.Register<MyEventHandler>();
-
             Container.Register<ShellViewModel>();
         }
 

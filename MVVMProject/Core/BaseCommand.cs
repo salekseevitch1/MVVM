@@ -23,6 +23,9 @@ namespace MVVMProject.Core
             Container.RegisterInstance(commandData.Application.ActiveUIDocument);
             Container.RegisterInstance(commandData.Application.ActiveUIDocument.Document);
 
+            Container.Register<ActionHandler>();
+            Container.Register<MyEventHandler>();
+
             RegisterCustomTypes();
 
             try
